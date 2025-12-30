@@ -1,11 +1,3 @@
-import os
-import sys
-import subprocess
-import time
-import math
-
-# --- DOSYA İÇERİĞİ (V25 - YEŞİL KUTU KALDIRILDI & SAYI SINIRI DÜZELTİLDİ) ---
-dosya_icerigi = """
 import streamlit as st
 import pandas as pd
 from datetime import datetime
@@ -84,7 +76,7 @@ SEHIR_KOORDINATLARI = {
 }
 
 # --- CSS ---
-st.markdown(\"\"\"
+st.markdown("""
     <style>
     .stButton>button {
         background-color: #d90429 !important;
@@ -110,7 +102,7 @@ st.markdown(\"\"\"
         border-radius: 5px;
     }
     </style>
-\"\"\", unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # --- VERİTABANI ---
 if 'ilanlar' not in st.session_state:
@@ -398,16 +390,3 @@ else:
                         with ac1: st.image(veri["ehliyet"], width=200, caption="Ehliyet")
                         with ac2: st.image(veri["foto"], width=200, caption="Şoför")
             if not arsiv_var_mi: st.info("Arşiv boş.")
-"""
-
-with open("lojistik_proje_final_v25.py", "w", encoding="utf-8") as f:
-    f.write(dosya_icerigi)
-
-print("✅ Güncelleme tamamlandı: lojistik_proje_final_v25.py")
-print("🛠️ SİSTEM: Yeşil kutu kaldırıldı. Sayı girişlerindeki '2000' limiti (min_value) düzeltildi.")
-print("🚀 Sistem başlatılıyor...")
-try:
-    subprocess.Popen([sys.executable, "-m", "streamlit", "run", "lojistik_proje_final_v25.py"])
-    time.sleep(3)
-except Exception as e:
-    print(f"Hata: {e}")
